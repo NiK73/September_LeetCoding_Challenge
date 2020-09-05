@@ -1,0 +1,14 @@
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        end_id = [0]*26
+        for i in range(len(S)):
+            end_id[ord(S[i]) - ord('a')] = i
+            
+        result = []
+        start, end = 0,0
+        for i in range(len(S)):
+            end = max(end, end_id[ord(S[i]) - ord('a')])
+            if i==end:
+                result.append(i-start+1)
+                start = i+1
+        return result
