@@ -1,0 +1,22 @@
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+        version1, version2 = version1.split('.'), version2.split('.')
+        index1, index2 = 0, 0
+        ver1Len, ver2Len = len(version1), len(version2)
+        while index1 < ver1Len and index2 < ver2Len:
+            if int(version1[index1]) == int(version2[index2]):
+                index1 += 1
+                index2 += 1
+            elif int(version1[index1]) > int(version2[index2]):
+                return 1
+            elif int(version1[index1]) < int(version2[index2]):
+                return -1
+        if ver1Len > ver2Len:
+            for i in range(index1, ver1Len):
+                if int(version1[i]) > 0:
+                    return 1
+        else:
+            for i in range(index2, ver2Len):
+                if int(version2[i]) > 0:
+                    return -1
+        return 0
