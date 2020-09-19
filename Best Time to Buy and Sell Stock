@@ -1,0 +1,13 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        min_el = prices[0]
+        max_profit = 0
+        for i in range(1, len(prices)):
+            if prices[i] < min_el:
+                min_el = prices[i]
+            if prices[i] - min_el > max_profit:
+                max_profit = prices[i] - min_el
+        return max_profit
+        
